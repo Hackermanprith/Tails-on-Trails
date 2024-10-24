@@ -98,7 +98,8 @@ ala_carte_data = {
     "Total Cost (rs)": [round(ala_walk_cost, 2), round(ala_grooming_cost, 2), round(ala_vet_cost, 2), round(ala_training_cost, 2)]
 }
 ala_carte_df = pd.DataFrame(ala_carte_data)
-st.dataframe(ala_carte_df.style.set_table_attributes('class="table"'), use_container_width=True)
+# Format the DataFrame to show 2 decimal places
+st.dataframe(ala_carte_df.style.format({'Total Cost (rs)': '{:.2f}'}).set_table_attributes('class="table"'), use_container_width=True)
 
 # Subscription Plan Table
 st.subheader(f"{plan_type} Subscription Plan")
@@ -123,7 +124,8 @@ subscription_data = {
     ]
 }
 subscription_df = pd.DataFrame(subscription_data)
-st.dataframe(subscription_df.style.set_table_attributes('class="table"'), use_container_width=True)
+# Format the DataFrame to show 2 decimal places
+st.dataframe(subscription_df.style.format({'Cost (rs)': '{:.2f}'}).set_table_attributes('class="table"'), use_container_width=True)
 
 # Final Balance Table with GST
 st.subheader("Final Balance with GST")
@@ -139,8 +141,8 @@ final_balance_data = {
 }
 final_balance_df = pd.DataFrame(final_balance_data)
 
-# Display the final balance table without highlighting the grand total
-st.table(final_balance_df.style.set_table_attributes('class="table"'))
+# Display the final balance table without highlighting the grand total, with 2 decimal places
+st.table(final_balance_df.style.format({'Amount (rs)': '{:.2f}'}).set_table_attributes('class="table"'))
 
 # Footer
 st.write("---")
